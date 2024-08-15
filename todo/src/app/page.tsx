@@ -1,6 +1,6 @@
+import TodoList from "@/components/Todolist";
 import { Button, List, Typography, Box } from "@mui/material";
 import Link from "next/link";
-import TodoList from "../components/TodoList";
 
 const Home = () => {
   return (
