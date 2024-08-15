@@ -26,9 +26,12 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, title, complete, onChange, onDe
 
   return (
     <Box display="flex" alignItems="center" gap={1}>
-      <Checkbox id={id} checked={checked} onChange={handleCheckboxChange} />
+      <Checkbox 
+        id={id} 
+        checked={checked} 
+        onChange={handleCheckboxChange} 
+      />
       <Typography
-        htmlFor={id}
         sx={{
           textDecoration: checked ? 'line-through' : 'none',
           color: checked ? 'gray' : 'inherit',
