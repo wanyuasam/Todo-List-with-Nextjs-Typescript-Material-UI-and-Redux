@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { Checkbox, IconButton, Typography, Box } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
