@@ -1,15 +1,34 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const API_URL = '/db.json';
 
+type Todo = {
+  id: number;
+  title: string;
+  complete: boolean;
+};
+
+interface TodoState {
+  todos: Todo[];
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error: string | null;
+}
+
+const initialState: TodoState = {
+  todos: [],
+  status: 'idle',
+  error: null,
+};
+
+// Async thunks
 export const fetchTodos = createAsyncThunk('todos/fetchTodos', async () => {
   const response = await axios.get(API_URL);
-  return response.data.todos;
+  return response.data.todos as Todo[];
 });
 
 export const addTodo = createAsyncThunk('todos/addTodo', async (title: string) => {
-  const newTodo = { title, complete: false };
+  const newTodo: Todo = { id: Date.now(), title, complete: false };
   return newTodo;
 });
 
@@ -21,29 +40,23 @@ export const deleteTodo = createAsyncThunk('todos/deleteTodo', async (id: number
   return id;
 });
 
-const initialState = {
-  todos: [],
-  status: 'idle',
-  error: null
-};
-
 const todoSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchTodos.fulfilled, (state, action) => {
+      .addCase(fetchTodos.fulfilled, (state, action: PayloadAction<Todo[]>) => {
         state.todos = action.payload;
       })
-      .addCase(addTodo.fulfilled, (state, action) => {
+      .addCase(addTodo.fulfilled, (state, action: PayloadAction<Todo>) => {
         state.todos.push(action.payload);
       })
-      .addCase(toggleTodo.fulfilled, (state, action) => {
+      .addCase(toggleTodo.fulfilled, (state, action: PayloadAction<number>) => {
         const todo = state.todos.find((t) => t.id === action.payload);
         if (todo) todo.complete = !todo.complete;
       })
-      .addCase(deleteTodo.fulfilled, (state, action) => {
+      .addCase(deleteTodo.fulfilled, (state, action: PayloadAction<number>) => {
         state.todos = state.todos.filter((t) => t.id !== action.payload);
       });
   }
