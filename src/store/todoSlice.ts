@@ -6,8 +6,8 @@ const API_URL = '/db.json';
 type Todo = {
   id: number;
   title: string;
-  description: string;  
-  priority: string;     
+  description: string;
+  priority: string;
   complete: boolean;
 };
 
@@ -23,31 +23,36 @@ const initialState: TodoState = {
   error: null,
 };
 
-// Async thunks
-export const fetchTodos = createAsyncThunk('todos/fetchTodos', async () => {
-  const response = await axios.get(API_URL);
-  return response.data.todos as Todo[];
-});
+export const fetchTodos = createAsyncThunk<Todo[]>(
+  'todos/fetchTodos',
+  async () => {
+    const response = await axios.get(API_URL);
+    return response.data.todos;
+  }
+);
 
-export const addTodo = createAsyncThunk('todos/addTodo', async (newTodoData: { title: string; description: string; priority: string }) => {
-  const { title, description, priority } = newTodoData;
-  const newTodo: Todo = { 
-    id: Date.now(), 
-    title, 
-    description,   
-    priority,      
-    complete: false 
-  };
-  return newTodo;
-});
+export const addTodo = createAsyncThunk<Todo, { title: string; description: string; priority: string }>(
+  'todos/addTodo',
+  async ({ title, description, priority }) => {
+    // Implement your API call or logic to add a new todo here
+    const newTodo: Todo = { id: Date.now(), title, description, priority, complete: false };
+    return newTodo;
+  }
+);
 
-export const toggleTodo = createAsyncThunk('todos/toggleTodo', async (id: number) => {
-  return id;
-});
+export const toggleTodo = createAsyncThunk<number, number>(
+  'todos/toggleTodo',
+  async (id) => {
+    return id;
+  }
+);
 
-export const deleteTodo = createAsyncThunk('todos/deleteTodo', async (id: number) => {
-  return id;
-});
+export const deleteTodo = createAsyncThunk<number, number>(
+  'todos/deleteTodo',
+  async (id) => {
+    return id;
+  }
+);
 
 const todoSlice = createSlice({
   name: 'todos',
@@ -68,7 +73,7 @@ const todoSlice = createSlice({
       .addCase(deleteTodo.fulfilled, (state, action: PayloadAction<number>) => {
         state.todos = state.todos.filter((t) => t.id !== action.payload);
       });
-  }
+  },
 });
 
 export default todoSlice.reducer;

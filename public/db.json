@@ -20,41 +20,6 @@
       "description": "Implement unit tests for the todo application", 
       "priority": "High", 
       "complete": false 
-    },
-    { 
-      "id": 4, 
-      "title": "Read Redux Documentation", 
-      "description": "Review Redux documentation for better state management", 
-      "priority": "Low", 
-      "complete": true 
-    },
-    { 
-      "id": 5, 
-      "title": "Explore Material UI", 
-      "description": "Learn about Material UI components and styling", 
-      "priority": "Medium", 
-      "complete": false 
-    },
-    { 
-      "id": 6, 
-      "title": "Setup GitHub Repository", 
-      "description": "Create a GitHub repository for project version control", 
-      "priority": "High", 
-      "complete": false 
-    },
-    { 
-      "id": 7, 
-      "title": "Deploy Application", 
-      "description": "Deploy the application to a cloud provider", 
-      "priority": "Medium", 
-      "complete": false 
-    },
-    { 
-      "id": 8, 
-      "title": "Update Documentation", 
-      "description": "Ensure all documentation is up to date", 
-      "priority": "Low", 
-      "complete": true 
     }
   ]
 }

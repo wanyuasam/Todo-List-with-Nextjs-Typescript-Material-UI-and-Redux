@@ -1,18 +1,17 @@
-"use client";
-
+// TodoList.tsx
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store';
+import { RootState, AppDispatch } from '../store';
 import { fetchTodos } from '../store/todoSlice';
 import TodoItem from './ToDoItem';
 import { List, Box } from '@mui/material';
 
 const TodoList = () => {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch(); 
   const todos = useSelector((state: RootState) => state.todos.todos);
 
   useEffect(() => {
-    dispatch(fetchTodos());
+    dispatch(fetchTodos() as any);  
   }, [dispatch]);
 
   return (

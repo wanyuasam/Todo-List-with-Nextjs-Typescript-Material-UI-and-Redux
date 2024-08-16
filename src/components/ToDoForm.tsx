@@ -1,5 +1,4 @@
-"use client";
-
+// TodoForm.tsx
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../store/todoSlice';
@@ -9,14 +8,14 @@ import { AppDispatch } from '../store/index';
 const TodoForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [priority, setPriority] = useState('Low'); // Default value for priority
+  const [priority, setPriority] = useState('Low');
 
   const dispatch: AppDispatch = useDispatch();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (title.trim()) {
-      dispatch(addTodo({ title, description, priority }));
+      dispatch(addTodo({ title, description, priority })); 
       setTitle('');
       setDescription('');
       setPriority('Low');
