@@ -1,10 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// API URL for db.json
 const API_URL = '/db.json';
 
-// Thunks for async operations
 export const fetchTodos = createAsyncThunk('todos/fetchTodos', async () => {
   const response = await axios.get(API_URL);
   return response.data.todos;
@@ -12,21 +10,17 @@ export const fetchTodos = createAsyncThunk('todos/fetchTodos', async () => {
 
 export const addTodo = createAsyncThunk('todos/addTodo', async (title: string) => {
   const newTodo = { title, complete: false };
-  // Logic to add todo (e.g., POST to API)
   return newTodo;
 });
 
 export const toggleTodo = createAsyncThunk('todos/toggleTodo', async (id: number) => {
-  // Logic to toggle todo
   return id;
 });
 
 export const deleteTodo = createAsyncThunk('todos/deleteTodo', async (id: number) => {
-  // Logic to delete todo
   return id;
 });
 
-// Initial state
 const initialState = {
   todos: [],
   status: 'idle',
