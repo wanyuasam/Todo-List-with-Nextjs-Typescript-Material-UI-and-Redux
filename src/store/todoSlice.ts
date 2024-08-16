@@ -34,7 +34,6 @@ export const fetchTodos = createAsyncThunk<Todo[]>(
 export const addTodo = createAsyncThunk<Todo, { title: string; description: string; priority: string }>(
   'todos/addTodo',
   async ({ title, description, priority }) => {
-    // Implement your API call or logic to add a new todo here
     const newTodo: Todo = { id: Date.now(), title, description, priority, complete: false };
     return newTodo;
   }
@@ -51,6 +50,14 @@ export const deleteTodo = createAsyncThunk<number, number>(
   'todos/deleteTodo',
   async (id) => {
     return id;
+  }
+);
+
+export const updateTodo = createAsyncThunk<Todo, Todo>(
+  'todos/updateTodo',
+  async (todo) => {
+    const response = await axios.put(`${API_URL}/todos/${todo.id}`, todo);
+    return response.data;
   }
 );
 
@@ -72,8 +79,15 @@ const todoSlice = createSlice({
       })
       .addCase(deleteTodo.fulfilled, (state, action: PayloadAction<number>) => {
         state.todos = state.todos.filter((t) => t.id !== action.payload);
+      })
+      .addCase(updateTodo.fulfilled, (state, action: PayloadAction<Todo>) => {
+        const index = state.todos.findIndex((t) => t.id === action.payload.id);
+        if (index !== -1) {
+          state.todos[index] = action.payload;
+        }
       });
   },
 });
 
 export default todoSlice.reducer;
+
