@@ -19,7 +19,14 @@ const TodoList = () => {
     <Box>
       <List>
         {todos.map((todo) => (
-          <TodoItem key={todo.id} id={todo.id} title={todo.title} complete={todo.complete} />
+          <TodoItem
+            key={todo.id}
+            id={todo.id}
+            title={todo.title}
+            description={todo.description}    
+            priority={todo.priority}          
+            complete={todo.complete}
+          />
         ))}
       </List>
     </Box>

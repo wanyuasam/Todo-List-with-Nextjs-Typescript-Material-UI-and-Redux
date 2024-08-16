@@ -6,6 +6,8 @@ const API_URL = '/db.json';
 type Todo = {
   id: number;
   title: string;
+  description: string;  
+  priority: string;     
   complete: boolean;
 };
 
@@ -27,8 +29,15 @@ export const fetchTodos = createAsyncThunk('todos/fetchTodos', async () => {
   return response.data.todos as Todo[];
 });
 
-export const addTodo = createAsyncThunk('todos/addTodo', async (title: string) => {
-  const newTodo: Todo = { id: Date.now(), title, complete: false };
+export const addTodo = createAsyncThunk('todos/addTodo', async (newTodoData: { title: string; description: string; priority: string }) => {
+  const { title, description, priority } = newTodoData;
+  const newTodo: Todo = { 
+    id: Date.now(), 
+    title, 
+    description,   
+    priority,      
+    complete: false 
+  };
   return newTodo;
 });
 
