@@ -9,9 +9,9 @@
     },
     {
       "id": "2",
-      "title": "Build a ToDo App",
-      "description": "Create a ToDo application with Next.js and Redux",
-      "priority": "High",
+      "title": "Build a Todo CRUD API",
+      "description": "Create a Todo application with Next.js and Redux",
+      "priority": "Medium",
       "complete": false
     },
     {
@@ -26,6 +26,13 @@
       "title": "Pay for tokens ",
       "description": "Get Meter number and load tokens",
       "priority": "High",
+      "complete": false
+    },
+    {
+      "id": "d8c8",
+      "title": "Master Node js",
+      "description": "Use youtube and documentations to learn",
+      "priority": "Medium",
       "complete": false
     }
   ]

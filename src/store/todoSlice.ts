@@ -59,10 +59,11 @@ export const deleteTodo = createAsyncThunk<number, number>(
 export const updateTodo = createAsyncThunk<Todo, Todo>(
   'todos/updateTodo',
   async (todo) => {
-    // Simulate the update locally for now
-    return todo;
+    const response = await axios.put(`http://localhost:3001/todos/${todo.id}`, todo);
+    return response.data;
   }
 );
+
 
 const todoSlice = createSlice({
   name: 'todos',
