@@ -4,13 +4,14 @@ import { useDispatch } from 'react-redux';
 import { addTodo } from '../store/todoSlice';
 import { Box, TextField, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import { AppDispatch } from '../store/index';
+import { useAppDispatch } from '../store';
 
 const TodoForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState('Low');
 
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

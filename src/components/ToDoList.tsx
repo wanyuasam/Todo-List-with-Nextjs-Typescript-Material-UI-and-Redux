@@ -1,17 +1,16 @@
-// TodoList.tsx
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../store';
+import { useSelector } from 'react-redux';
+import { RootState, useAppDispatch } from '../store/index'; 
 import { fetchTodos } from '../store/todoSlice';
 import TodoItem from './ToDoItem';
 import { List, Box } from '@mui/material';
 
 const TodoList = () => {
-  const dispatch: AppDispatch = useDispatch(); 
+  const dispatch = useAppDispatch(); 
   const todos = useSelector((state: RootState) => state.todos.todos);
 
   useEffect(() => {
-    dispatch(fetchTodos() as any);  
+    dispatch(fetchTodos()); 
   }, [dispatch]);
 
   return (

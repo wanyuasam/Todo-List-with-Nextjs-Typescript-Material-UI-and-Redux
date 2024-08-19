@@ -1,7 +1,7 @@
 import { Checkbox, IconButton, Typography, Box, TextField, MenuItem, Select, FormControl, InputLabel, Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../store/index'; 
 import { toggleTodo, deleteTodo, updateTodo } from '../store/todoSlice';
 import { useState } from 'react';
 
@@ -14,7 +14,7 @@ interface TodoItemProps {
 }
 
 const TodoItem: React.FC<TodoItemProps> = ({ id, title, description, priority, complete }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch(); 
   const [isEditing, setIsEditing] = useState(false);
   const [editTitle, setEditTitle] = useState(title);
   const [editDescription, setEditDescription] = useState(description);
