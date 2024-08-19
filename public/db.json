@@ -1,7 +1,39 @@
 {
-    "todos": [
-      { "id": 1, "title": "Learn Next.js", "complete": false },
-      { "id": 2, "title": "Build a ToDo App", "complete": false }
-    ]
-  }
-  
+  "todos": [
+    {
+      "id": "1",
+      "title": "Learn Next.js",
+      "description": "Understand the basics of Next.js framework",
+      "priority": "Medium",
+      "complete": false
+    },
+    {
+      "id": "2",
+      "title": "Build a Todo CRUD API",
+      "description": "Create a Todo application with Next.js and Redux",
+      "priority": "Medium",
+      "complete": false
+    },
+    {
+      "id": "3",
+      "title": "Write Unit Tests",
+      "description": "Implement unit tests for the todo application",
+      "priority": "High",
+      "complete": false
+    },
+    {
+      "id": "72e3",
+      "title": "Pay for tokens ",
+      "description": "Get Meter number and load tokens",
+      "priority": "High",
+      "complete": false
+    },
+    {
+      "id": "d8c8",
+      "title": "Master Node js",
+      "description": "Use youtube and documentations to learn",
+      "priority": "Medium",
+      "complete": false
+    }
+  ]
+}

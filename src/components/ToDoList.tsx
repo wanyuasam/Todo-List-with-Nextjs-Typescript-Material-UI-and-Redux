@@ -1,26 +1,35 @@
-"use client";
-
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store';
+import { useSelector } from 'react-redux';
+import { RootState, useAppDispatch } from '../store/index'; 
 import { fetchTodos } from '../store/todoSlice';
 import TodoItem from './ToDoItem';
-import { List, Box } from '@mui/material';
+import { List, Box, Typography } from '@mui/material';
 
 const TodoList = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch(); 
   const todos = useSelector((state: RootState) => state.todos.todos);
 
   useEffect(() => {
-    dispatch(fetchTodos());
+    dispatch(fetchTodos()); 
   }, [dispatch]);
 
   return (
     <Box>
       <List>
-        {todos.map((todo) => (
-          <TodoItem key={todo.id} id={todo.id} title={todo.title} complete={todo.complete} />
-        ))}
+        {todos && todos.length > 0 ? (
+          todos.map((todo) => (
+            <TodoItem
+              key={todo.id}
+              id={todo.id}
+              title={todo.title}
+              description={todo.description}
+              priority={todo.priority}
+              complete={todo.complete}
+            />
+          ))
+        ) : (
+          <Typography>No todos available</Typography>
+        )}
       </List>
     </Box>
   );
