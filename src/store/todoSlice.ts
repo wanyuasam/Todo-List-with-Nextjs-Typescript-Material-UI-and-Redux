@@ -56,8 +56,8 @@ export const deleteTodo = createAsyncThunk<number, number>(
 export const updateTodo = createAsyncThunk<Todo, Todo>(
   'todos/updateTodo',
   async (todo) => {
-    const response = await axios.put(`${API_URL}/todos/${todo.id}`, todo);
-    return response.data;
+    // Simulate the update locally for now
+    return todo;
   }
 );
 
