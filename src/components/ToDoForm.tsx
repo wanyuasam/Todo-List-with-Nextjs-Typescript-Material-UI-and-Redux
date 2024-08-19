@@ -15,8 +15,8 @@ const TodoForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (title.trim()) {
-      dispatch(addTodo({ title, description, priority })); 
+    if (title.trim()) { // removes any leading and trailing whitespace from the string
+      dispatch(addTodo({ title, description, priority })); // dispatches an action to the Redux store
       setTitle('');
       setDescription('');
       setPriority('Low');
