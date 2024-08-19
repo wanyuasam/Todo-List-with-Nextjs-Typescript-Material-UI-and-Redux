@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const API_URL = '/db.json';
+const API_URL = 'http://localhost:3001/todos';
 
 type Todo = {
   id: number;
@@ -13,7 +13,7 @@ type Todo = {
 
 interface TodoState {
   todos: Todo[];
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  status: 'idle';
   error: string | null;
 }
 
@@ -27,7 +27,8 @@ export const fetchTodos = createAsyncThunk<Todo[]>(
   'todos/fetchTodos',
   async () => {
     const response = await axios.get(API_URL);
-    return response.data.todos;
+    console.log('Fetched todos:', response.data.todos);
+    return response.data;
   }
 );
 

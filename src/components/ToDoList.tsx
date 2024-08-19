@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../store/index'; 
 import { fetchTodos } from '../store/todoSlice';
 import TodoItem from './ToDoItem';
-import { List, Box } from '@mui/material';
+import { List, Box, Typography } from '@mui/material';
 
 const TodoList = () => {
   const dispatch = useAppDispatch(); 
@@ -16,16 +16,20 @@ const TodoList = () => {
   return (
     <Box>
       <List>
-        {todos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            id={todo.id}
-            title={todo.title}
-            description={todo.description}    
-            priority={todo.priority}          
-            complete={todo.complete}
-          />
-        ))}
+        {todos && todos.length > 0 ? (
+          todos.map((todo) => (
+            <TodoItem
+              key={todo.id}
+              id={todo.id}
+              title={todo.title}
+              description={todo.description}
+              priority={todo.priority}
+              complete={todo.complete}
+            />
+          ))
+        ) : (
+          <Typography>No todos available</Typography>
+        )}
       </List>
     </Box>
   );
