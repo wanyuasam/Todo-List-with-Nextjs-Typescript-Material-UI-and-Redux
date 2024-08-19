@@ -35,10 +35,12 @@ export const fetchTodos = createAsyncThunk<Todo[]>(
 export const addTodo = createAsyncThunk<Todo, { title: string; description: string; priority: string }>(
   'todos/addTodo',
   async ({ title, description, priority }) => {
-    const newTodo: Todo = { id: Date.now(), title, description, priority, complete: false };
-    return newTodo;
+    const newTodo: Omit<Todo, 'id'> = { title, description, priority, complete: false };
+    const response = await axios.post(API_URL, newTodo);
+    return response.data;
   }
 );
+
 
 export const toggleTodo = createAsyncThunk<number, number>(
   'todos/toggleTodo',
