@@ -23,6 +23,7 @@ const initialState: TodoState = {
   error: null,
 };
 
+// get all todo items
 export const fetchTodos = createAsyncThunk<Todo[]>(
   'todos/fetchTodos',
   async () => {
@@ -32,6 +33,7 @@ export const fetchTodos = createAsyncThunk<Todo[]>(
   }
 );
 
+// post a new task
 export const addTodo = createAsyncThunk<Todo, { title: string; description: string; priority: string }>(
   'todos/addTodo',
   async ({ title, description, priority }) => {
