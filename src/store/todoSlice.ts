@@ -56,6 +56,7 @@ export const toggleTodo = createAsyncThunk<number, number>(
 export const deleteTodo = createAsyncThunk<number, number>(
   'todos/deleteTodo',
   async (id) => {
+    const response = await axios.delete(`http://localhost:3001/todos/${id}`)
     return id;
   }
 );
