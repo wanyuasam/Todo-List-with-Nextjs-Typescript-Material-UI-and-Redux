@@ -47,9 +47,11 @@ export const addTodo = createAsyncThunk<Todo, { title: string; description: stri
 export const toggleTodo = createAsyncThunk<number, number>(
   'todos/toggleTodo',
   async (id) => {
+    const response = await axios.patch(`http://localhost:3001/todos/${id}`, { complete: true });
     return id;
   }
 );
+
 
 export const deleteTodo = createAsyncThunk<number, number>(
   'todos/deleteTodo',

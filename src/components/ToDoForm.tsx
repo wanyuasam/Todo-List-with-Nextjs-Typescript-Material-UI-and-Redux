@@ -4,6 +4,14 @@ import { useAppDispatch } from '../store';
 import { addTodo, updateTodo } from '../store/todoSlice';
 import { Box, TextField, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 
+interface Todo {
+  id: number;
+  title: string;
+  description: string;
+  priority: string;
+  complete: boolean;
+}
+
 interface TodoFormProps {
   editingTodo: Todo | null;
   clearEditing: () => void;

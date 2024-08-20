@@ -19,7 +19,7 @@
       "title": "Write Unit Tests For Backend",
       "description": "Implement unit tests for the todo application",
       "priority": "High",
-      "complete": false
+      "complete": true
     },
     {
       "id": "72e3",
@@ -38,7 +38,7 @@
     {
       "id": "b56e",
       "title": "Learn oop with Java",
-      "description": "Master OOP",
+      "description": "Master OOP and DSA",
       "priority": "Low",
       "complete": false
     },

@@ -7,6 +7,14 @@ import TodoItem from './ToDoItem';
 import TodoForm from './ToDoForm';
 import { List, Box, Typography } from '@mui/material';
 
+interface Todo {
+  id: number;
+  title: string;
+  description: string;
+  priority: string;
+  complete: boolean;
+}
+
 const TodoList = () => {
   const dispatch = useAppDispatch();
   const todos = useSelector((state: RootState) => state.todos.todos);
