@@ -3,23 +3,23 @@
     {
       "id": "1",
       "title": "Learn Next.js",
-      "description": "Understand the basics of Next.js framework",
-      "priority": "Medium",
+      "description": "Understand the basics of Next.js framework and the middleware",
+      "priority": "High",
       "complete": false
     },
     {
       "id": "2",
       "title": "Build a Todo CRUD API",
       "description": "Create a Todo application with Next.js and Redux",
-      "priority": "Medium",
+      "priority": "High",
       "complete": false
     },
     {
       "id": "3",
-      "title": "Write Unit Tests",
+      "title": "Write Unit Tests For Backend",
       "description": "Implement unit tests for the todo application",
       "priority": "High",
-      "complete": false
+      "complete": true
     },
     {
       "id": "72e3",
@@ -33,6 +33,27 @@
       "title": "Master Node js",
       "description": "Use youtube and documentations to learn",
       "priority": "Medium",
+      "complete": false
+    },
+    {
+      "id": "b56e",
+      "title": "Learn oop with Java",
+      "description": "Master OOP and DSA",
+      "priority": "Low",
+      "complete": false
+    },
+    {
+      "id": "c6a7",
+      "title": "Learn Next.js",
+      "description": "Understand the basics of Next.js framework",
+      "priority": "Low",
+      "complete": false
+    },
+    {
+      "id": "9d87",
+      "title": "kjfkladsj",
+      "description": "dlksjfak",
+      "priority": "Low",
       "complete": false
     }
   ]

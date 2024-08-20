@@ -1,25 +1,58 @@
 // TodoForm.tsx
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addTodo } from '../store/todoSlice';
-import { Box, TextField, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
-import { AppDispatch } from '../store/index';
+import { useState, useEffect } from 'react';
 import { useAppDispatch } from '../store';
+import { addTodo, updateTodo } from '../store/todoSlice';
+import { Box, TextField, Button, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 
-const TodoForm = () => {
+interface Todo {
+  id: number;
+  title: string;
+  description: string;
+  priority: string;
+  complete: boolean;
+}
+
+interface TodoFormProps {
+  editingTodo: Todo | null;
+  clearEditing: () => void;
+}
+
+const TodoForm: React.FC<TodoFormProps> = ({ editingTodo, clearEditing }) => {
+  const dispatch = useAppDispatch();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState('Low');
 
-  const dispatch = useAppDispatch();
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (title.trim()) { // removes any leading and trailing whitespace from the string
-      dispatch(addTodo({ title, description, priority })); // dispatches an action to the Redux store
+  useEffect(() => {
+    if (editingTodo) {
+      setTitle(editingTodo.title);
+      setDescription(editingTodo.description);
+      setPriority(editingTodo.priority);
+    } else {
       setTitle('');
       setDescription('');
       setPriority('Low');
+    }
+  }, [editingTodo]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (title.trim()) {
+      if (editingTodo) {
+        dispatch(updateTodo({
+          id: editingTodo.id,
+          title,
+          description,
+          priority,
+          complete: editingTodo.complete
+        }));
+      } else {
+        dispatch(addTodo({ title, description, priority }));
+      }
+      setTitle('');
+      setDescription('');
+      setPriority('Low');
+      clearEditing(); // Clear editing state
     }
   };
 
@@ -27,7 +60,7 @@ const TodoForm = () => {
     <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
       <TextField
         variant="outlined"
-        label="New Todo"
+        label="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
@@ -49,7 +82,9 @@ const TodoForm = () => {
           <MenuItem value="High">High</MenuItem>
         </Select>
       </FormControl>
-      <Button type="submit" variant="contained">Add</Button>
+      <Button type="submit" variant="contained">
+        {editingTodo ? 'Update' : 'Add'}
+      </Button>
     </Box>
   );
 };

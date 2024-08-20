@@ -1,6 +1,6 @@
 "use client";
 
-import TodoForm from '../components/ToDoForm';
+// import TodoForm from '../components/ToDoForm';
 import TodoList from '../components/ToDoList';
 import { Container, Typography } from '@mui/material';
 
@@ -10,7 +10,7 @@ export default function HomePage() {
       <Typography variant="h3" sx={{ marginBottom: 4 }}>
         Todo App
       </Typography>
-      <TodoForm />
+      {/* <TodoForm /> */}
       <TodoList />
     </Container>
   );
